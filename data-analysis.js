@@ -82,13 +82,3 @@ fetch(url)
 		let averageHeight = totalHeight / data.users.length
 		console.log('Средний рост', averageHeight)
 	})
-
-	
-	
-
-
-
-
-
-
-
