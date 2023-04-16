@@ -14,16 +14,17 @@ function getData(url) {
 	}
 
 function processData(users) {
-	let maxWeight = 0;
-	let minWeight = Number.MAX_VALUE;
-	let maxHeight = 0;
-	let minHeight = Number.MAX_VALUE;
-	let maxWeightUser = null;
-	let minWeightUser = null;
-	let maxHeightUser = null;
-	let minHeightUser = null;
-	let totalWeight = 0;
-	let totalHeight = 0;
+	let maxWeight = 0
+	let minWeight = Number.MAX_VALUE
+	let maxHeight = 0
+	let minHeight = Number.MAX_VALUE
+	let maxWeightUser = null
+	let minWeightUser = null
+	let maxHeightUser = null
+	let minHeightUser = null
+	let totalWeight = 0
+	let totalHeight = 0
+	let maxValue = Number.MAX_VALUE
 	
 	users.forEach(function(user) {
 		if (user.weight > maxWeight) {
@@ -35,8 +36,8 @@ function processData(users) {
 			minWeightUser = user;
 		}
 	
-		totalWeight += user.weight;
-		totalHeight += user.height;
+		totalWeight += user.weight
+		totalHeight += user.height
 
 		if (user.height > maxHeight)  {
 			maxHeight = user.height;
@@ -48,8 +49,8 @@ function processData(users) {
 		}
 	})
 
-	const averageWeight = totalWeight / users.length;
-	const averageHeight = totalHeight / users.length;
+	const averageWeight = totalWeight / users.length
+	const averageHeight = totalHeight / users.length
 
 	return {
 		maxWeight,
@@ -66,10 +67,10 @@ function processData(users) {
 }
 
 function displayResults(results) {
-	document.getElementById("output").textContent = 'Имя пользователя с максимальным весом: ' + results.maxWeightUser.firstName + ' Максимальный вес: ' + results.maxWeight;
-	document.getElementById("output1").textContent = 'Имя пользователя с минимальным весом: ' + results.minWeightUser.firstName + ' Минимальный вес: ' + results.minWeight;
-	document.getElementById("output3").textContent = 'Имя пользователя с максимальным ростом: ' + results.maxHeightUser.firstName + ' Максимальный рост: ' + results.maxHeight;
-	document.getElementById("output4").textContent = 'Имя пользователя с минимальным ростом: ' + results.minHeightUser.firstName + ' Минимальный рост: ' + results.minHeight;
-	document.getElementById("output2").textContent = 'Средний вес: ' + results.averageWeight;
-	document.getElementById("output5").textContent = 'Средний рост: ' + results.averageHeight;
+	document.getElementById("outputMaxWeight").textContent = 'Имя пользователя с максимальным весом: ' + results.maxWeightUser.firstName + ' Максимальный вес: ' + results.maxWeight;
+	document.getElementById("outputMinWeight").textContent = 'Имя пользователя с минимальным весом: ' + results.minWeightUser.firstName + ' Минимальный вес: ' + results.minWeight;
+	document.getElementById("outputMaxHeight").textContent = 'Имя пользователя с максимальным ростом: ' + results.maxHeightUser.firstName + ' Максимальный рост: ' + results.maxHeight;
+	document.getElementById("outputMinHeight").textContent = 'Имя пользователя с минимальным ростом: ' + results.minHeightUser.firstName + ' Минимальный рост: ' + results.minHeight;
+	document.getElementById("outputAverageWeight").textContent = 'Средний вес: ' + results.averageWeight;
+	document.getElementById("outputAverageHeight").textContent = 'Средний рост: ' + results.averageHeight;
 }
