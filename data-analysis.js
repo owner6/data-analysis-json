@@ -1,15 +1,16 @@
 const url = 'https://dummyjson.com/users';
+
 getData(url)
   .then(users => {
     const results = processData(users);
     displayResults(results);
   })
 
-function getData(url) {
-  return fetch(url)
-    .then(response => response.json())
-    .then(data => {
-    return data.users;
+  function getData(url) {
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+      return data.users;
     })
   }
 
@@ -64,7 +65,6 @@ function processData(users) {
     averageHeight
   }
 }
-
 
 function displayResults(results) {
   document.getElementById("outputMaxWeight").textContent = 'Имя пользователя с максимальным весом: ' + results.maxWeightUser.firstName + ' Максимальный вес: ' + results.maxWeight;
