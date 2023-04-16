@@ -6,12 +6,12 @@ getData(url)
 	})
 
 function getData(url) {
-return fetch(url)
-	.then(response => response.json())
-	.then(data => {
-	return data.users;
-	})
-}
+	return fetch(url)
+		.then(response => response.json())
+		.then(data => {
+		return data.users;
+		})
+	}
 
 function processData(users) {
 	let maxWeight = 0;
