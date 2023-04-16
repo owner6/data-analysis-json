@@ -5,13 +5,13 @@ getData(url)
     displayResults(results);
   })
 
-function getData(url) {
-  return fetch(url)
-    .then(response => response.json())
-    .then(data => {
-    return data.users;
-    })
-  }
+  function getData(url) {
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+      return data.users;
+      })
+    }
 
 function processData(users) {
   let maxWeight = 0
