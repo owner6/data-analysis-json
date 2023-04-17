@@ -8,11 +8,13 @@ function getData(url) {
       const maxWeight = findMaxWeight(users)
       const minWeight = findMinWeight(users)
       const maxHeight = findMaxHeight(users)
+      const minHeight = findMinHeight(users)
       return { 
         users, 
         maxWeight,
         minWeight,
-        maxHeight
+        maxHeight,
+        minHeight
       }
     })
 }
@@ -47,8 +49,19 @@ function findMaxHeight(users) {
   return maxHeight
 }
 
+function findMinHeight(users) {
+  let minHeight = Number.MAX_VALUE
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].height < minHeight) {
+      minHeight = users[i].height
+    }
+  }
+  return minHeight
+}
+
 getData(url).then(data => {
   console.log(data.maxWeight)
   console.log(data.minWeight)
   console.log(data.maxHeight)
+  console.log(data.minHeight)
 })
