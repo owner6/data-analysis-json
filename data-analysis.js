@@ -77,7 +77,6 @@ function processData(users) {
     tallestMale,
     tallestMaleWeight
   }
-  
 }
 
 function displayResults(results) {
