@@ -24,7 +24,8 @@ function processData(users) {
   let minHeightUser = null
   let totalWeight = 0
   let totalHeight = 0
-  let males = []
+  let malesHeight = []
+  let malesWeight = []
   
   users.forEach(function(user) {
     if (user.weight > maxWeight) {
@@ -48,7 +49,10 @@ function processData(users) {
       minHeightUser = user;
     }
     if (user.gender === "male") {
-      males.push(user)
+      malesHeight.push(user)
+    }
+    if (user.gender === "male") {
+      malesWeight.push(user)
     }
    
   })
@@ -56,8 +60,9 @@ function processData(users) {
   const averageWeight = totalWeight / users.length
   const averageHeight = totalHeight / users.length
 
-  const tallestMale = males.filter(user => user.gender === "male").reduce((prev, current) => (prev.height > current.height) ? prev : current);
- 
+  const tallestMale = malesHeight.filter(user => user.gender === "male").reduce((prev, current) => (prev.height > current.height) ? prev : current);
+  const tallestMaleWeight = malesWeight.filter(user => user.gender === "male").reduce((prev, current) => (prev.weight > current.weight) ? prev : current);
+  
   return {
     maxWeight,
     minWeight,
@@ -69,7 +74,8 @@ function processData(users) {
     minHeightUser,
     averageWeight,
     averageHeight,
-    tallestMale
+    tallestMale,
+    tallestMaleWeight
   }
   
 }
@@ -82,4 +88,5 @@ function displayResults(results) {
   document.getElementById("outputAverageWeight").textContent = 'Средний вес: ' + results.averageWeight;
   document.getElementById("outputAverageHeight").textContent = 'Средний рост: ' + results.averageHeight;
   document.getElementById("outputTallestMale").textContent = 'Имя самого высокого мужчины: ' + results.tallestMale.firstName
+  document.getElementById("outputTallestMaleWeight").textContent = 'Имя самого тяжелого мужчины: ' + results.tallestMaleWeight.firstName
 }
