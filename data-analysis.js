@@ -10,13 +10,15 @@ function getData(url) {
       const maxHeight = findMaxHeight(users)
       const minHeight = findMinHeight(users)
       const averageWeight = findAverageWeight(users)
+      const averageHeight = findAverageHeight(users)
       return { 
         users, 
         maxWeight,
         minWeight,
         maxHeight,
         minHeight,
-        averageWeight
+        averageWeight,
+        averageHeight
       }
     })
 }
@@ -69,10 +71,19 @@ function findAverageWeight(users) {
   return  (averageWeight / users.length)
 }
 
+function findAverageHeight(users) {
+  let averageHeight = 0
+  for (let i = 0; i < users.length; i++) {
+    averageHeight = averageHeight + users[i].height
+  }
+  return (averageHeight / users.length)
+}
+
 getData(url).then(data => {
   console.log('Самый большой вес: ', data.maxWeight)
   console.log('Самый маленький вес: ', data.minWeight)
   console.log('Самый большой рост: ', data.maxHeight)
   console.log('Самий маленький рост: ', data.minHeight)
   console.log('Средний вес пользователей: ', data.averageWeight)
+  console.log('Средний рост пользователей ', data.averageHeight)
 })
