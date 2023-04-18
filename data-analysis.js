@@ -11,6 +11,8 @@ function getData(url) {
       const minHeight = findMinHeight(users)
       const averageWeight = findAverageWeight(users)
       const averageHeight = findAverageHeight(users)
+      const maleUsersWeight = filterMaleUsersWeight(users)
+      const maleUsersHeight = filterMaleUsersHeight(users)
       return { 
         users, 
         maxWeight,
@@ -18,7 +20,9 @@ function getData(url) {
         maxHeight,
         minHeight,
         averageWeight,
-        averageHeight
+        averageHeight,
+        maleUsersWeight,
+        maleUsersHeight
       }
     })
 }
@@ -79,6 +83,14 @@ function findAverageHeight(users) {
   return (averageHeight / users.length)
 }
 
+function filterMaleUsersWeight(users) {
+  return users.filter(user => user.gender === 'male').reduce((prev, current) => (prev.weight > current.weight) ? prev : current)
+}
+
+function filterMaleUsersHeight(users) {
+  return users.filter(user => user.gender === 'male').reduce((prev, current) => (prev.height > current.height) ? prev : current)
+}
+
 getData(url).then(data => {
   console.log('Самый большой вес: ', data.maxWeight)
   console.log('Самый маленький вес: ', data.minWeight)
@@ -86,4 +98,6 @@ getData(url).then(data => {
   console.log('Самий маленький рост: ', data.minHeight)
   console.log('Средний вес пользователей: ', data.averageWeight)
   console.log('Средний рост пользователей ', data.averageHeight)
+  console.log('Самый тяжелый мужчина: ', data.maleUsersWeight.lastName)
+  console.log('Самый высокий мужчина: ', data.maleUsersHeight.lastName)
 })
