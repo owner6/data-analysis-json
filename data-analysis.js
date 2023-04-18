@@ -92,12 +92,12 @@ function filterMaleUsersHeight(users) {
 }
 
 getData(url).then(data => {
-  console.log('Самый большой вес: ', data.maxWeight)
-  console.log('Самый маленький вес: ', data.minWeight)
-  console.log('Самый большой рост: ', data.maxHeight)
-  console.log('Самий маленький рост: ', data.minHeight)
-  console.log('Средний вес пользователей: ', data.averageWeight)
-  console.log('Средний рост пользователей ', data.averageHeight)
-  console.log('Самый тяжелый мужчина: ', data.maleUsersWeight.lastName)
-  console.log('Самый высокий мужчина: ', data.maleUsersHeight.lastName)
+  document.write('Самый большой вес: ', data.maxWeight, '<br>')
+  document.write('Самый маленький вес: ', data.minWeight, '<br>')
+  document.write('Самый большой рост: ', data.maxHeight, '<br>')
+  document.write('Самий маленький рост: ', data.minHeight, '<br>')
+  document.write('Средний вес пользователей: ', data.averageWeight, '<br>')
+  document.write('Средний рост пользователей ', data.averageHeight, '<br>')
+  document.write('Самый тяжелый мужчина: ', data.maleUsersWeight.lastName, '<br>')
+  document.write('Самый высокий мужчина: ', data.maleUsersHeight.lastName, '<br>')
 })
