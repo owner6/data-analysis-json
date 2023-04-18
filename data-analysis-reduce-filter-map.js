@@ -28,30 +28,32 @@ function getData(url) {
 }
 
 function findMaxWeight(users) {
-  let maxWeight = 0;
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].weight > maxWeight) {
-       maxWeight = users[i].weight
+  let maxWeight = users.reduce(function(sum, current) {
+    if (sum.weight > current.weight) {
+      return sum
+    } else {
+      return current
     }
-  }
-  return maxWeight
+  })
+  return maxWeight.weight
 }
 
 function findMinWeight(users) {
-  let minWeight = Number.MAX_VALUE
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].weight < minWeight) {
-       minWeight = users[i].weight 
+  let minWeight = users.reduce(function(min, current) {
+    if (min.weight < current.weight) {
+      return min
+    } else {
+      return current
     }
-  }
-  return minWeight
+  })
+  return minWeight.weight
 }
 
 function findMaxHeight(users) {
   let maxHeight = 0
   for (let i = 0; i < users.length; i++) {
     if (users[i].height > maxHeight) {
-      maxHeight = users[i].height
+      return maxHeight = users[i].height
     }
   }
   return maxHeight
