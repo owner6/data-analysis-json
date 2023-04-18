@@ -50,39 +50,39 @@ function findMinWeight(users) {
 }
 
 function findMaxHeight(users) {
-  let maxHeight = 0
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].height > maxHeight) {
-      return maxHeight = users[i].height
+  let maxHeight = users.reduce(function(max, current){
+    if (max.height > current.height) {
+      return max
+    } else {
+      return current
     }
-  }
-  return maxHeight
+  })
+  return maxHeight.height
 }
 
 function findMinHeight(users) {
-  let minHeight = Number.MAX_VALUE
-  for (let i = 0; i < users.length; i++) {
-    if (users[i].height < minHeight) {
-      minHeight = users[i].height
+  let minHeight = users.reduce(function(min, current){
+    if (min.height < current.height) {
+      return min
+    } else {
+      return current
     }
-  }
-  return minHeight
+  })
+  return minHeight.height
 }
 
 function findAverageWeight(users) {
-  let averageWeight = 0
-  for (let i = 0; i < users.length; i++) {
-    averageWeight = averageWeight + users[i].weight
-  }
-  return  (averageWeight / users.length)
+  let averageWeight = users.reduce(function(total, current){
+    return total + current.weight
+  }, 0)
+  return averageWeight / users.length
 }
 
 function findAverageHeight(users) {
-  let averageHeight = 0
-  for (let i = 0; i < users.length; i++) {
-    averageHeight = averageHeight + users[i].height
-  }
-  return (averageHeight / users.length)
+  let averageHeight = users.reduce(function(total, current){
+    return total + current.height
+  }, 0)
+  return averageHeight / users.length
 }
 
 function filterMaleUsersWeight(users) {
