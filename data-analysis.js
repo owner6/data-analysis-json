@@ -25,7 +25,7 @@ function processData(users) {
     averageHeight,
     maleUsersWeight,
     maleUsersHeight
-  };
+  }
 }
 
 function findMaxWeight(users) {
