@@ -1,13 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-</head>
-<body>
-
-	<script src="data-analysis.js"></script>
-</body>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Отображение данных пользователей</title>
+  </head>
+  <body>
+    <h1>Данные пользователей</h1>
+    <table>
+      <tr>
+        <th>Параметр</th>
+        <th>Значение</th>
+      </tr>
+      <tr>
+        <td>Максимальный вес</td>
+        <td id="outputMaxWeightUser"></td>
+      </tr>
+      <tr>
+        <td>Минимальный вес</td>
+        <td id="outputMinWeightUser"></td>
+      </tr>
+      <tr>
+        <td>Максимальный рост</td>
+        <td id="outputMaxHeightUser"></td>
+      </tr>
+      <tr>
+        <td>Минимальный рост</td>
+        <td id="outputMinHeightUser"></td>
+      </tr>
+      <tr>
+        <td>Средний вес</td>
+        <td id="outputAverageWeight"></td>
+      </tr>
+      <tr>
+        <td>Средний рост</td>
+        <td id="outputAverageHeight"></td>
+      </tr>
+    </table>
+    <script src="data-analysis.js"></script>
+  </body>
 </html>
