@@ -20,6 +20,7 @@ function processData(users) {
   const averageWeight = calculateAverageWeight(users)
   const averageHeight = calculateAverageHeight(users)
   const nameWeight = filterMaleUsersWeight(users)
+  const nameHeight = filterMaleUsersHeight(users)
 
   return {
     maxWeightUser,
@@ -28,7 +29,8 @@ function processData(users) {
     minHeightUser,
     averageWeight,
     averageHeight,
-    nameWeight
+    nameWeight,
+    nameHeight
   }
 }
 
@@ -79,11 +81,12 @@ function filterMaleUsersHeight(users) {
 }
 
 function displayResults(results) {
-  document.getElementById("outputMaxWeightUser").textContent =  results.maxWeightUser.weight + ' kg';
-  document.getElementById("outputMinWeightUser").textContent =  results.minWeightUser.weight + ' kg';
-  document.getElementById("outputMaxHeightUser").textContent =  results.maxHeightUser.height + ' sm';
-  document.getElementById("outputMinHeightUser").textContent =  results.minHeightUser.height + ' sm';
-  document.getElementById("outputAverageWeight").textContent =  results.averageWeight + ' kg';
-  document.getElementById("outputAverageHeight").textContent =  results.averageHeight + ' sm';
-  document.getElementById("outputNameWeight").textContent =  results.nameWeight.lastName;
+  document.getElementById("outputMaxWeightUser").textContent =  results.maxWeightUser.weight + ' kg'
+  document.getElementById("outputMinWeightUser").textContent =  results.minWeightUser.weight + ' kg'
+  document.getElementById("outputMaxHeightUser").textContent =  results.maxHeightUser.height + ' sm'
+  document.getElementById("outputMinHeightUser").textContent =  results.minHeightUser.height + ' sm'
+  document.getElementById("outputAverageWeight").textContent =  results.averageWeight + ' kg'
+  document.getElementById("outputAverageHeight").textContent =  results.averageHeight + ' sm'
+  document.getElementById("outputNameWeight").textContent =  results.nameWeight.lastName
+  document.getElementById("outputNameHeight").textContent =  results.nameHeight.lastName
 }
