@@ -1,10 +1,15 @@
 const url = 'https://dummyjson.com/users';
 
+getData(url)
+  .then(users => {
+    const results = processData(users);
+    displayResults(results);
+  })
+
 function getData(url) {
   return fetch(url)
     .then((response) => response.json())
-    .then((users) => processData(users))
-    .then(displayResults)
+    .then((data) => data.users)
 }
 
 function processData(users) {
@@ -14,6 +19,7 @@ function processData(users) {
   const minHeightUser = findMinHeightUser(users)
   const averageWeight = calculateAverageWeight(users)
   const averageHeight = calculateAverageHeight(users)
+  const nameWeight = filterMaleUsersWeight(users)
 
   return {
     maxWeightUser,
@@ -21,31 +27,32 @@ function processData(users) {
     maxHeightUser,
     minHeightUser,
     averageWeight,
-    averageHeight
+    averageHeight,
+    nameWeight
   }
 }
 
 function findMaxWeightUser(users) {
   return users.reduce((prev, current) => {
-    return (Number(prev.weight) < Number(current.weight)) ? prev : current
+    return (Number(prev.weight) > Number(current.weight)) ? prev : current
   })
 } 
 
 function findMinWeightUser(users) {
   return users.reduce((prev, current) => {
-    return (Number(prev.weight) > Number(current.weight)) ? prev : current
+    return (Number(prev.weight) < Number(current.weight)) ? prev : current
   })
 }
 
 function findMaxHeightUser(users) {
   return users.reduce((prev, current) => {
-    return (Number(prev.height) < Number(current.height)) ? prev : current
+    return (Number(prev.height) > Number(current.height)) ? prev : current
   })
 }
 
 function findMinHeightUser(users) {
   return users.reduce((prev, current) => {
-    return (Number(prev.height) > Number(current.height)) ? prev : current 
+    return (Number(prev.height) < Number(current.height)) ? prev : current 
   })
 }
 
@@ -63,11 +70,20 @@ function calculateAverageHeight(users) {
   return totalHeight / users.length
 }
 
+function filterMaleUsersWeight(users) {
+  return users.filter(user => user.gender === 'male').reduce((prev, current) => (prev.weight > current.weight) ? prev : current)
+}
+
+function filterMaleUsersHeight(users) {
+  return users.filter(user => user.gender === 'male').reduce((prev, current) => (prev.height > current.height) ? prev : current)
+}
+
 function displayResults(results) {
-  document.getElementById("outputMaxWeightUser").textContent = 'Максимальный вес: ' + results.maxWeightUser;
-  document.getElementById("outputMinWeightUser").textContent = 'Минимальный вес: ' + results.minWeightUser;
-  document.getElementById("outputMaxHeightUser").textContent = 'Максимальный рост: ' + results.maxHeightUser;
-  document.getElementById("outputMinHeightUser").textContent = 'Минимальный рост: ' + results.minHeightUser;
-  document.getElementById("outputAverageWeight").textContent = 'Средний вес: ' + results.averageWeight;
-  document.getElementById("outputAverageHeight").textContent = 'Средний рост: ' + results.averageHeight;
+  document.getElementById("outputMaxWeightUser").textContent =  results.maxWeightUser.weight + ' kg';
+  document.getElementById("outputMinWeightUser").textContent =  results.minWeightUser.weight + ' kg';
+  document.getElementById("outputMaxHeightUser").textContent =  results.maxHeightUser.height + ' sm';
+  document.getElementById("outputMinHeightUser").textContent =  results.minHeightUser.height + ' sm';
+  document.getElementById("outputAverageWeight").textContent =  results.averageWeight + ' kg';
+  document.getElementById("outputAverageHeight").textContent =  results.averageHeight + ' sm';
+  document.getElementById("outputNameWeight").textContent =  results.nameWeight.lastName;
 }
