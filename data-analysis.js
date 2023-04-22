@@ -81,22 +81,6 @@ function filterMaleUsersHeight(users) {
   return users.filter(user => user.gender === 'male').reduce((prev, current) => (prev.height > current.height) ? prev : current);
 }
 
-function sortByAge(users) {
-	return users.sort((a, b) => a.age - b.age);
-}
-
-function sortByName(users) {
-	return users.sort((a, b) => {
-		if (a.firstName < b.firstName) {
-			return -1;
-		} else if (a.firstName > b.firstName) {
-			return 1;
-		} else {
-			return 0;
-		}
-	});
-}
-
 function displayResults(results) {
   document.getElementById("outputMaxWeightUser").textContent =  results.maxWeightUser.weight + ' kg';
   document.getElementById("outputMinWeightUser").textContent =  results.minWeightUser.weight + ' kg';
