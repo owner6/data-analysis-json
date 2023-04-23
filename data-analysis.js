@@ -6,71 +6,88 @@ getData(url)
     displayResults(results);
   })
 
-  function getData(url) {
-    return fetch(url)
-      .then(response => response.json())
-      .then(data => {
-      return data.users;
-    })
-  }
+function getData(url) {
+  return fetch(url)
+    .then((response) => response.json())
+    .then((data) => data.users)
+};
 
 function processData(users) {
-  let maxWeight = 0
-  let minWeight = Number.MAX_VALUE
-  let maxHeight = 0
-  let minHeight = Number.MAX_VALUE
-  let maxWeightUser = null
-  let minWeightUser = null
-  let maxHeightUser = null
-  let minHeightUser = null
-  let totalWeight = 0
-  let totalHeight = 0
+  const maxWeightUser = findMaxWeightUser(users);
+  const minWeightUser = findMinWeightUser(users);
+  const maxHeightUser = findMaxHeightUser(users);
+  const minHeightUser = findMinHeightUser(users);
+  const averageWeight = calculateAverageWeight(users);
+  const averageHeight = calculateAverageHeight(users);
+  const maxWeightName = findMaxWeightMaleUsers(users);
+  const maxHeightName = findMaxHeightMaleUsers(users);
   
-  users.forEach(function(user) {
-    if (user.weight > maxWeight) {
-      maxWeight = user.weight;
-      maxWeightUser = user;
-    }
-    if (user.weight < minWeight) {
-    minWeight = user.weight;
-      minWeightUser = user;
-    }
-  
-    totalWeight += user.weight
-    totalHeight += user.height
-
-    if (user.height > maxHeight)  {
-      maxHeight = user.height;
-      maxHeightUser = user;
-    }
-    if (user.height < minHeight)  {
-      minHeight = user.height;
-      minHeightUser = user;
-    }
-  })
-
-  const averageWeight = totalWeight / users.length
-  const averageHeight = totalHeight / users.length
 
   return {
-    maxWeight,
-    minWeight,
-    maxHeight,
-    minHeight,
     maxWeightUser,
     minWeightUser,
     maxHeightUser,
     minHeightUser,
     averageWeight,
-    averageHeight
+    averageHeight,
+    maxWeightName,
+    maxHeightName,
   }
 }
 
+function findMaxWeightUser(users) {
+  return users.reduce((prev, current) => {
+    return prev.weight > current.weight ? prev : current;
+  })
+} 
+
+function findMinWeightUser(users) {
+  return users.reduce((prev, current) => {
+    return prev.weight < current.weight ? prev : current;
+  })
+}
+
+function findMaxHeightUser(users) {
+  return users.reduce((prev, current) => {
+    return prev.height > current.height ? prev : current;
+  })
+}
+
+function findMinHeightUser(users) {
+  return users.reduce((prev, current) => {
+    return prev.height < current.height ? prev : current ;
+  })
+}
+
+function calculateAverageWeight(users) {
+  const totalWeight = users.reduce((prev, current) => {
+    return prev + current.weight ;
+  }, 0)
+  return totalWeight / users.length;
+}
+
+function calculateAverageHeight(users) {
+  const totalHeight = users.reduce((prev, current) => {
+    return prev + current.height 
+  }, 0)
+  return totalHeight / users.length
+}
+
+function findMaxWeightMaleUsers(users) {
+  return users.filter(user => user.gender === 'male').reduce((prev, current) => (prev.weight > current.weight) ? prev : current);
+}
+
+function findMaxHeightMaleUsers(users) {
+  return users.filter(user => user.gender === 'male').reduce((prev, current) => (prev.height > current.height) ? prev : current);
+}
+
 function displayResults(results) {
-  document.getElementById("outputMaxWeight").textContent = 'Имя пользователя с максимальным весом: ' + results.maxWeightUser.firstName + ' Максимальный вес: ' + results.maxWeight;
-  document.getElementById("outputMinWeight").textContent = 'Имя пользователя с минимальным весом: ' + results.minWeightUser.firstName + ' Минимальный вес: ' + results.minWeight;
-  document.getElementById("outputMaxHeight").textContent = 'Имя пользователя с максимальным ростом: ' + results.maxHeightUser.firstName + ' Максимальный рост: ' + results.maxHeight;
-  document.getElementById("outputMinHeight").textContent = 'Имя пользователя с минимальным ростом: ' + results.minHeightUser.firstName + ' Минимальный рост: ' + results.minHeight;
-  document.getElementById("outputAverageWeight").textContent = 'Средний вес: ' + results.averageWeight;
-  document.getElementById("outputAverageHeight").textContent = 'Средний рост: ' + results.averageHeight;
+  document.getElementById("outputMaxWeightUser").textContent =  results.maxWeightUser.weight + ' kg';
+  document.getElementById("outputMinWeightUser").textContent =  results.minWeightUser.weight + ' kg';
+  document.getElementById("outputMaxHeightUser").textContent =  results.maxHeightUser.height + ' sm';
+  document.getElementById("outputMinHeightUser").textContent =  results.minHeightUser.height + ' sm';
+  document.getElementById("outputAverageWeight").textContent =  results.averageWeight + ' kg';
+  document.getElementById("outputAverageHeight").textContent =  results.averageHeight + ' sm';
+  document.getElementById("outputNameWeight").textContent =  results.maxWeightName.lastName + '  ' + results.maxWeightName.firstName;
+  document.getElementById("outputNameHeight").textContent =  results.maxHeightName.lastName + '  ' + results.maxHeightName.firstName;
 }
