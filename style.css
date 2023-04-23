@@ -1,15 +1,15 @@
 table {
-	border-collapse: collapse;
-	width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 th, td {
-	padding: 8px;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 th {
-	background-color: #4CAF50;
-	color: white;
+  background-color: #4CAF50;
+  color: white;
 }
 .additional-info {
   max-width: 100%;
@@ -23,9 +23,9 @@ th {
 .additional-info h2 {
   font-size: 20px;
   margin-bottom: 10px;
-	display: flex;
-	justify-content: center;
-	
+  display: flex;
+  justify-content: center;
+  
 }
 .additional-info ul {
   list-style: none;
