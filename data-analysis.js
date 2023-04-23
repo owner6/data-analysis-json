@@ -37,25 +37,25 @@ function processData(users) {
 
 function findMaxWeightUser(users) {
   return users.reduce((prev, current) => {
-    return (Number(prev.weight) > Number(current.weight)) ? prev : current;
+    return prev.weight > current.weight ? prev : current;
   })
 } 
 
 function findMinWeightUser(users) {
   return users.reduce((prev, current) => {
-    return (Number(prev.weight) < Number(current.weight)) ? prev : current;
+    return prev.weight < current.weight ? prev : current;
   })
 }
 
 function findMaxHeightUser(users) {
   return users.reduce((prev, current) => {
-    return (Number(prev.height) > Number(current.height)) ? prev : current;
+    return prev.height > current.height ? prev : current;
   })
 }
 
 function findMinHeightUser(users) {
   return users.reduce((prev, current) => {
-    return (Number(prev.height) < Number(current.height)) ? prev : current ;
+    return prev.height < current.height ? prev : current ;
   })
 }
 
