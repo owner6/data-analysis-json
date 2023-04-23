@@ -10,7 +10,7 @@ function getData(url) {
   return fetch(url)
     .then((response) => response.json())
     .then((data) => data.users)
-}
+};
 
 function processData(users) {
   const maxWeightUser = findMaxWeightUser(users);
@@ -19,9 +19,9 @@ function processData(users) {
   const minHeightUser = findMinHeightUser(users);
   const averageWeight = calculateAverageWeight(users);
   const averageHeight = calculateAverageHeight(users);
-  const nameWeight = filterMaleUsersWeight(users);
-  const nameHeight = filterMaleUsersHeight(users);
-	
+  const maxWeightName = findMaxWeightMaleUsers(users);
+  const maxHeightName = findMaxHeightMaleUsers(users);
+  
 
   return {
     maxWeightUser,
@@ -30,8 +30,8 @@ function processData(users) {
     minHeightUser,
     averageWeight,
     averageHeight,
-    nameWeight,
-    nameHeight
+    maxWeightName,
+    maxHeightName,
   }
 }
 
@@ -73,11 +73,11 @@ function calculateAverageHeight(users) {
   return totalHeight / users.length
 }
 
-function filterMaleUsersWeight(users) {
+function findMaxWeightMaleUsers(users) {
   return users.filter(user => user.gender === 'male').reduce((prev, current) => (prev.weight > current.weight) ? prev : current);
 }
 
-function filterMaleUsersHeight(users) {
+function findMaxHeightMaleUsers(users) {
   return users.filter(user => user.gender === 'male').reduce((prev, current) => (prev.height > current.height) ? prev : current);
 }
 
@@ -88,6 +88,6 @@ function displayResults(results) {
   document.getElementById("outputMinHeightUser").textContent =  results.minHeightUser.height + ' sm';
   document.getElementById("outputAverageWeight").textContent =  results.averageWeight + ' kg';
   document.getElementById("outputAverageHeight").textContent =  results.averageHeight + ' sm';
-  document.getElementById("outputNameWeight").textContent =  results.nameWeight.lastName + '  ' + results.nameWeight.firstName;
-  document.getElementById("outputNameHeight").textContent =  results.nameHeight.lastName + '  ' + results.nameHeight.firstName;
+  document.getElementById("outputNameWeight").textContent =  results.maxWeightName.lastName + '  ' + results.maxWeightName.firstName;
+  document.getElementById("outputNameHeight").textContent =  results.maxHeightName.lastName + '  ' + results.maxHeightName.firstName;
 }
